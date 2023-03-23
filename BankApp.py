@@ -1,9 +1,10 @@
+import re
 class BankAccount:
     def __init__(self, acc_num, balance, owner, pswd):
         self._acc_num = acc_num
         self._balance = balance
         self._owner = owner
-        self.__pass = pswd
+        self._pswd = pswd
 
     def __repr__(self):
         return f'Account number: {self._acc_num}, Balance: {self._balance}, Owner: {self._owner}'
@@ -32,18 +33,44 @@ class Bank:
         self.bank_name = name
         self.acc_db = []
 
+    def _input_w_regex(self, regex, message):
+        while True:
+            val = input()
+            if re.match(regex, val):
+                return val
+            else:
+                print(message)
+
     def add_new_acc(self):
-        # create some user interface and input() to create some simple UI
+        reg_for_num = r'^\d+$'
+        reg_for_nam = r'^[a-zA-Z ]+$'
+
         print("Enter the new account number: ", end='')
-        num = int(input())
+        num = self._input_w_regex(reg_for_num, "Only digits in the account number! Try again.")
+
         print("Set the balance to: ", end='')
-        bal = int(input())
+        bal = self._input_w_regex(reg_for_num, "Only digits in the balance value! Try again.")
+
         print("Enter the holder name: ", end='')
-        nam = str(input())
+        nam = self._input_w_regex(reg_for_nam, "Only letters and spaces in the name! Try again.")
+
         print("Enter the password: ", end='')
-        __pswd = str(input()).lower().lstrip().rstrip()
-        temp_obj = BankAccount(num, bal, nam, __pswd)
+        _pswd = str(input())
+
+        temp_obj = BankAccount(num, bal, nam, _pswd)
         self.acc_db.append(temp_obj)
+
+    def take_acc_from_db(self, line: str):
+        pass
+        # num, bal, nam = line.split(",")
+        # temp = BankAccount(num, bal, nam)
+        # return temp
+
+    def file_to_db(self, f: str):
+        pass
+        # lines = str([*f]).split('\n')
+        # for line in lines:
+        #     self.acc_db.append(self.take_acc_from_db(line))
 
     def remove_acc(self):
         pass

@@ -4,7 +4,10 @@ import os
 mybank = Bank("iPKO")
 # print(mybank.acc_db[0].get_owner())
 
+
 while True:
+    # database = os.open('bank.db', os.O_RDWR)
+    # mybank.file_to_db(os.read(database, 10**5))
     print("Hello, welcome in our Bank {bankname}".format(bankname=mybank.get_name()))
     print("What would you like to do?: \n"
           "1. <create> an account \n"
@@ -40,3 +43,6 @@ while True:
     else:
         os.system('cls')
         print("<<< Sorry there's no such request. Try again >>>")
+    #os.close(database)
+
+
