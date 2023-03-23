@@ -33,6 +33,7 @@ class Bank:
         self.bank_name = name
         self.acc_db = []
 
+    @staticmethod
     def _input_w_regex(self, regex, message):
         while True:
             val = input()
@@ -42,35 +43,30 @@ class Bank:
                 print(message)
 
     def add_new_acc(self):
-        reg_for_num = r'^\d+$'
-        reg_for_nam = r'^[a-zA-Z ]+$'
+        reg_numbers = r'^\d+$'
+        reg_names = r'^[a-zA-Z ]+$'
 
         print("Enter the new account number: ", end='')
-        num = self._input_w_regex(reg_for_num, "Only digits in the account number! Try again.")
+        num = self._input_w_regex(reg_numbers, "Only digits in the account number! Try again.")
 
         print("Set the balance to: ", end='')
-        bal = self._input_w_regex(reg_for_num, "Only digits in the balance value! Try again.")
+        bal = self._input_w_regex(reg_numbers, "Only digits in the balance value! Try again.")
 
         print("Enter the holder name: ", end='')
-        nam = self._input_w_regex(reg_for_nam, "Only letters and spaces in the name! Try again.")
+        nam = self._input_w_regex(reg_names, "Only letters and spaces in the name! Try again.")
 
         print("Enter the password: ", end='')
         _pswd = str(input())
 
         temp_obj = BankAccount(num, bal, nam, _pswd)
         self.acc_db.append(temp_obj)
+        del temp_obj
 
-    def take_acc_from_db(self, line: str):
+    def take_acc_from_db(self):
         pass
-        # num, bal, nam = line.split(",")
-        # temp = BankAccount(num, bal, nam)
-        # return temp
 
-    def file_to_db(self, f: str):
+    def file_to_db(self):
         pass
-        # lines = str([*f]).split('\n')
-        # for line in lines:
-        #     self.acc_db.append(self.take_acc_from_db(line))
 
     def remove_acc(self):
         pass
@@ -95,4 +91,32 @@ class Bank:
 
 
 class BankUI:
-    pass
+    last_request = None
+
+    def __init__(self):
+        pass
+
+    def print_menu(self, bank):
+        print("Hello, welcome in our Bank {bank_name}".format(bank_name=bank))
+        print("What would you like to do?: \n"
+              "1. <create> an account \n"
+              "2. <withdraw> \n"
+              "3. <deposit> \n"
+              "4. <delete> \n"
+              "5. <exit> \n"
+              "6. <showdb>", end='\n')
+
+    def get_request(self, request):
+        self.last_request = str(request).lower().lstrip().rstrip()
+        return self.last_request
+
+    def req_create(self):
+        pass
+
+    def req_withdraw(self):
+        pass
+
+
+
+
+
