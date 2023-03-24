@@ -44,16 +44,16 @@ class Bank:
 
     def add_new_acc(self):
         reg_numbers = r'^\d+$'
-        reg_names = r'^[a-zA-Z ]+$'
+        reg_names = r'^[a-zA-Z]+[ ]?[a-zA-Z]*$'
 
         print("Enter the new account number: ", end='')
-        num = self._input_w_regex(reg_numbers, "Only digits in the account number! Try again.")
+        num = self._input_w_regex(self, reg_numbers, "Only digits in the account number! Try again.")
 
         print("Set the balance to: ", end='')
-        bal = self._input_w_regex(reg_numbers, "Only digits in the balance value! Try again.")
+        bal = self._input_w_regex(self, reg_numbers, "Only digits in the balance value! Try again.")
 
-        print("Enter the holder name: ", end='')
-        nam = self._input_w_regex(reg_names, "Only letters and spaces in the name! Try again.")
+        print("Enter the holder name (first name, last name): ", end='')
+        nam = self._input_w_regex(self, reg_names, "First name, last name, only letters! Try again.")
 
         print("Enter the password: ", end='')
         _pswd = str(input())
