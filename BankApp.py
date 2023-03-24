@@ -110,6 +110,9 @@ class BankUI:
         self.last_request = str(request).lower().lstrip().rstrip()
         return self.last_request
 
+    def request_chooser(self, request):
+        pass
+
     def req_create(self):
         pass
 
