@@ -91,7 +91,14 @@ class Bank:
 
 
 class BankUI:
-    last_request = None
+    all_requests = (
+        (1, 'create', '1'),
+        (2, 'withdraw', '2'),
+        (3, 'deposit', '3'),
+        (4, 'delete', '4'),
+        (5, 'exit', '5'),
+        (6, 'showdb', '6')
+    )
 
     def __init__(self):
         pass
@@ -106,12 +113,13 @@ class BankUI:
               "5. <exit> \n"
               "6. <showdb>", end='\n')
 
-    def get_request(self, request):
-        self.last_request = str(request).lower().lstrip().rstrip()
-        return self.last_request
-
     def request_chooser(self, request):
-        pass
+        switch_case = str(request).lower().lstrip().rstrip()
+        for req in self.all_requests:
+            if switch_case == req[2]:
+                return switch_case
+        else:
+            print("No such request.")
 
     def req_create(self):
         pass

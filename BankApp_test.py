@@ -4,11 +4,11 @@ import os
 mybank = Bank("WallStreetBank")
 myui = BankUI()
 # print(mybank.acc_db[0].get_owner())
-
+print(myui.request_chooser('2'))
 
 while True:
     myui.print_menu(mybank.get_name())
-    request = myui.get_request(input())
+    request = myui.request_chooser(str(input()))
 
     if request == 'create' or request == '1':
         os.system('cls')
